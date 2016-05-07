@@ -62,11 +62,11 @@ endif
 PKG_APPEND ?= $(PKG_APPEND.$(BUILD_PLATFORM))
 
 # Platform specific package overrides
-ifneq ($(wildcard $(DEF_ROOT)/$(BUILD_DISTRIBUTION).def), )
-	include $(DEF_ROOT)/$(BUILD_DISTRIBUTION).def
+ifneq ($(wildcard $(BUILD_DISTRIBUTION).def), )
+	include $(BUILD_DISTRIBUTION).def
 endif
-ifneq ($(wildcard $(DEF_ROOT)/$(BUILD_PLATFORM).def), )
-	include $(DEF_ROOT)/$(BUILD_PLATFORM).def
+ifneq ($(wildcard $(BUILD_PLATFORM).def), )
+	include $(BUILD_PLATFORM).def
 endif
 
 define generic-setup
