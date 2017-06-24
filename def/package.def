@@ -53,6 +53,7 @@ PKG_ITERATION = 1$(PKG_REVISION)
 # - PKG_DEV
 # - PKG_LIB
 # - PKG_APPEND
+# - PKG_OS_TAG
 BUILD_DISTRIBUTION := $(shell $(SED) -e 's/[0-9]*_[0-9]*$$//' <<< $(BUILD_PLATFORM))
 ifneq ($(wildcard $(DEF_ROOT)/package-$(BUILD_DISTRIBUTION).def), )
 	include $(DEF_ROOT)/package-$(BUILD_DISTRIBUTION).def
@@ -60,6 +61,7 @@ else
 	include $(error unsupported BUILD_PLATFORM $(BUILD_PLATFORM))
 endif
 PKG_APPEND ?= $(PKG_APPEND.$(BUILD_PLATFORM))
+PKG_OS_TAG ?= $(PKG_OS_TAG.$(BUILD_PLATFORM))
 
 # Platform specific package overrides
 ifneq ($(wildcard $(BUILD_DISTRIBUTION).def), )
@@ -80,7 +82,7 @@ endef
 
 # $pkg.spec OR $pkg/debian/{changelog,*.shlibs}
 define replace-pkginfo
-  $(PERL) -pi -e 's|VERSION|$(pvers)|; s|ITERATION|$(PKG_ITERATION)|; s|ZAPPEND|$(PKG_APPEND)|'
+  $(PERL) -pi -e 's|VERSION|$(pvers)|g; s|ITERATION|$(PKG_ITERATION)|g; s|PKG_OS_TAG|$(PKG_OS_TAG)|g; s|ZAPPEND|$(PKG_APPEND)|g'
 endef
 
 # $pkg.spec OR $pkg/debian/rules
