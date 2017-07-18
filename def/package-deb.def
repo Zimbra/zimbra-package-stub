@@ -1,6 +1,6 @@
 PKG_EXT := deb
 
-PKG_BUILD := dpkg-buildpackage -irpm
+PKG_BUILD := dpkg-buildpackage -irpm -us -uc
 PKG_EXTRACT := sudo apt-get --assume-yes --verbose-versions install
 PKG_PURGE := sudo apt-get --assume-yes --purge purge
 PKG_DEV := dev

@@ -80,7 +80,7 @@ define generic-clean
   $(RM) -rf $(PLATFORM_DIR)
 endef
 
-# $pkg.spec OR $pkg/debian/{changelog,*.shlibs}
+# $pkg.spec OR $pkg/debian/{changelog,*.shlibs,control}
 define replace-pkginfo
   $(PERL) -pi -e 's|VERSION|$(pvers)|g; s|ITERATION|$(PKG_ITERATION)|g; s|PKG_OS_TAG|$(PKG_OS_TAG)|g; s|ZAPPEND|$(PKG_APPEND)|g'
 endef
@@ -95,7 +95,7 @@ define replace-dictinfo
   $(PERL) -pi -e 's/ADICT/$(dictver)/g;'
 endef
 
-# $pkg.spec OR $pkg/debian/{changelog, control, copyright, watch}
+# $pkg.spec OR $pkg/debian/{changelog,control,copyright,watch}
 define replace-perl-modinfo
   $(PERL) -pi -e 's/MODNAME/$(pname)/g; s/MODNORMNAME/$(pname_lc)/g;'
 endef
