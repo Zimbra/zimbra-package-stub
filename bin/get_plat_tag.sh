@@ -25,6 +25,12 @@ if [ -f /etc/redhat-release ]; then
     i=""
   fi
 
+  grep "Red Hat Enterprise Linux.*release 9" /etc/redhat-release > /dev/null 2>&1
+  if [ $? = 0 ]; then
+     echo "RHEL9${i}"
+     exit 0
+  fi
+
   grep "Red Hat Enterprise Linux.*release 8" /etc/redhat-release > /dev/null 2>&1
   if [ $? = 0 ]; then
      echo "RHEL8${i}"
@@ -41,6 +47,11 @@ if [ -f /etc/redhat-release ]; then
     exit 0
   fi
 
+  grep "CentOS Linux release 9" /etc/redhat-release > /dev/null 2>&1
+  if [ $? = 0 ]; then
+     echo "RHEL9${i}"
+     exit 0
+  fi
   grep "CentOS Linux release 8" /etc/redhat-release > /dev/null 2>&1
   if [ $? = 0 ]; then
      echo "RHEL8${i}"
@@ -57,12 +68,23 @@ if [ -f /etc/redhat-release ]; then
     exit 0
   fi
 
+  grep "Rocky Linux release 9" /etc/redhat-release > /dev/null 2>&1
+  if [ $? = 0 ]; then
+    echo "RHEL9${i}"
+    exit 0
+  fi
+
   grep "Rocky Linux release 8" /etc/redhat-release > /dev/null 2>&1
   if [ $? = 0 ]; then
     echo "RHEL8${i}"
     exit 0
   fi
 
+  grep "Scientific Linux release 9" /etc/redhat-release > /dev/null 2>&1
+  if [ $? = 0 ]; then
+    echo "RHEL9${i}"
+    exit 0
+  fi
   grep "Scientific Linux release 8" /etc/redhat-release > /dev/null 2>&1
   if [ $? = 0 ]; then
     echo "RHEL8${i}"
